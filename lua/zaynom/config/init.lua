@@ -1,2 +1,2 @@
-require('zaynom.config.keymaps')
-require('zaynom.config.options')
+require("zaynom.config.keymaps")
+require("zaynom.config.options")

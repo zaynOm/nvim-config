@@ -1,5 +1,5 @@
 -- for setting transparent background
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 -- vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
@@ -45,3 +45,6 @@ vim.opt.isfname:append("@-@")
 -- enable netrw for editing files on a remote server EDIT: does not work
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
+
+vim.g.python_host_prog = "~/.nvim-venv/bin/python"
+vim.g.python3_host_prog = "~/.nvim-venv/bin/python"
