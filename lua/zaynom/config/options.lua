@@ -2,7 +2,8 @@
 vim.opt.termguicolors = true
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
--- vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
+-- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+-- vim.cmd("highlight NvimTreeNormal guibg=none ctermbg=none")
 
 vim.g.background = "dark"
 vim.opt.nu = true
@@ -43,8 +44,22 @@ vim.opt.isfname:append("@-@")
 
 -- nvim-tree netrw have no idea what this means, but i'm tring to desable the notify in NT
 -- enable netrw for editing files on a remote server EDIT: does not work
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 vim.g.python_host_prog = "~/.nvim-venv/bin/python"
 vim.g.python3_host_prog = "~/.nvim-venv/bin/python"
+
+-- make help open in vertical split
+-- Function to open help files in a vertical split
+local function open_help_in_vertical_split()
+	if vim.bo.filetype == "help" then
+		vim.cmd("wincmd L")
+	end
+end
+
+-- Autocommand to trigger the function when a help file is opened
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = open_help_in_vertical_split,
+})

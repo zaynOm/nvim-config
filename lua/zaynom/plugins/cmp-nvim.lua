@@ -13,22 +13,13 @@ return {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
+      local luasnip = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
         snippet = {
           expand = function(args)
-            local ls = require("luasnip")
-            ls.lsp_expand(args.body)
-            vim.keymap.set({ "i" }, "<C-K>", function()
-              ls.expand()
-            end, { silent = true })
-            vim.keymap.set({ "i", "s" }, "<C-L>", function()
-              ls.jump(1)
-            end, { silent = true })
-            vim.keymap.set({ "i", "s" }, "<C-J>", function()
-              ls.jump(-1)
-            end, { silent = true })
+            require("luasnip").lsp_expand(args.body)
           end,
         },
         window = {
@@ -41,14 +32,30 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+          ["<C-l>"] = function(fallback)
+            if luasnip.jumpable(1) then
+              luasnip.jump(1)
+            else
+              fallback()
+            end
+          end,
+          ["<C-h>"] = function(fallback)
+            if luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end,
         }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp", filetypes = { "javascript", "typescript" } },
-          { name = "luasnip",  filetypes = { "javascript", "typescript" } }, -- For luasnip users.
-        }, {
+        sources = {
+          { name = "nvim_lsp" }, -- , filetypes = { "javascript", "typescript" } },
+          { name = "luasnip" }, -- ,  filetypes = { "javascript", "typescript" } }, -- For luasnip users.
+        },
+        {
           { name = "buffer" },
           { name = "path" },
-        }),
+        },
       })
     end,
   },

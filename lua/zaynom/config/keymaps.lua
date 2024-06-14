@@ -8,6 +8,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<leader>n", ":bn<cr>")
 vim.keymap.set("n", "<leader>p", ":bp<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
+vim.keymap.set("n", "<leader>X", ":%bd!<cr>")
 
 -- yank to clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
@@ -16,8 +17,8 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- move code up/down
-vim.keymap.set("n", "<C-j>", ":m +1<CR>==")
-vim.keymap.set("n", "<C-k>", ":m -2<CR>==")
+vim.keymap.set("n", "<C-k>", ":m -2<CR>")
+vim.keymap.set("n", "<C-j>", ":m +1<CR>")
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
 
