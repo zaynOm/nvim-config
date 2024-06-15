@@ -40,24 +40,15 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lspconfig = require("lspconfig")
-      --
       lspconfig.tsserver.setup({
         capabilities = capabilities,
-        settings = {
+        init_options = {
           preferences = {
-            importModuleSpecifierPreference = "relative",
-            importModuleSpecifierEnding = "minimal",
-            includeCompletionsForImportStatements = true,
-            includeCompletionsWithInsertText = true,
-            includeAutomaticOptionalChainCompletions = true,
+            disableSuggestions = true,
           },
         },
       })
-      --
-      -- lspconfig.lua_ls.setup({
-      --   capabilities = capabilities,
-      -- })
-      --
+
       lspconfig.emmet_ls.setup({
         -- on_attach = on_attach,
         capabilities = capabilities,

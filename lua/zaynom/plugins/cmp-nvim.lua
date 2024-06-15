@@ -49,10 +49,8 @@ return {
           end,
         }),
         sources = {
-          { name = "nvim_lsp" }, -- , filetypes = { "javascript", "typescript" } },
-          { name = "luasnip" }, -- ,  filetypes = { "javascript", "typescript" } }, -- For luasnip users.
-        },
-        {
+          { name = "nvim_lsp" }, -- filetypes = { "javascript", "typescript" } },
+          { name = "luasnip" }, -- filetypes = { "javascript", "typescript" } }, -- For luasnip users.
           { name = "buffer" },
           { name = "path" },
         },
